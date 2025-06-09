@@ -9,85 +9,121 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
-            background: #ffe8ef;
         }
         body {
             min-height: 100vh;
             min-width: 100vw;
+            margin: 0;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             background: url('image4.jpg') center center/cover no-repeat fixed;
+            position: relative;
         }
-        .container {
-            background: rgba(255,255,255,0.97);
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .card {
+            background: rgba(255,255,255,0.93);
             border-radius: 20px;
-            padding: 20px 12px;
-            max-width: 440px;
-            width: 95vw;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.16);
+            padding: 32px 24px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+            max-width: 900px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 28px;
+            animation: fadeIn 2s;
+            position: relative;
+            z-index: 2;
+            background: url('image3.jpg') center center/cover no-repeat;
+            overflow: hidden;
+        }
+        .left-images {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            margin: 16px 0;
+            gap: 20px;
         }
-        .decor-top {
-            display: flex;
-            gap: 10px;
-            font-size: 2em;
-            margin-bottom: 6px;
-        }
-        .images-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 8px;
-            width: 100%;
-            justify-content: center;
-        }
-        .img-card {
-            width: 40vw;
-            max-width: 110px;
-            height: 30vw;
-            max-height: 120px;
+        .birthday-img {
+            width: 160px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 14px;
-            box-shadow: 0 2px 10px #f6728077;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(246, 115, 128, 0.25);
+            animation: pop-in 1.2s cubic-bezier(.52,1.64,.37,.94);
         }
-        .content {
-            width: 100%;
-            text-align: center;
+        .right-image {
+            width: 160px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(100, 100, 100, 0.20);
+            margin-left: 0;
+            animation: pop-in 1.6s cubic-bezier(.52,1.64,.37,.94);
+        }
+        .card-content {
+            flex: 1;
+            text-align: left;
+            background: rgba(255,255,255,0.88);
+            border-radius: 16px;
+            padding: 8px 16px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
         }
         h1 {
             color: #f67280;
-            font-size: 1.4em;
-            margin: 0 0 10px 0;
-            letter-spacing: 1.2px;
-            text-shadow: 0 1px 6px #ffd6e3, 0 1px 0 #fff;
+            margin-bottom: 16px;
+            font-size: 2.3em;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px #ffb2c1, 0 1px 0 #fff;
+            animation: glow 2s infinite alternate;
         }
-        .wishes {
-            color: #444;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            word-break: break-word;
-        }
-        .footer {
-            margin-top: 6px;
-            font-size: 1em;
-            color: #f44336;
-        }
-        .audio-box {
-            margin-top: 10px;
+        .balloons {
+            margin-bottom: 16px;
+            font-size: 2.5em;
+            animation: float 2s infinite alternate;
             display: flex;
-            flex-direction: column;
+            gap: 8px;
+        }
+        .star {
+            color: #f7d51d;
+            font-size: 1.5em;
+            animation: twinkle 1.3s infinite alternate;
+            margin-right: 3px;
+        }
+        .firework {
+            position: absolute;
+            font-size: 2.2em;
+            pointer-events: none;
+            animation: firework 2.5s linear infinite;
+        }
+        .yellow { color: #ffd600; font-weight:bold; }
+        .red { color: #f44336; font-weight:bold; }
+        .blue { color: #1976d2; font-weight:bold; }
+        .green { color: #43a047; font-weight:bold; }
+        .purple { color: #8e24aa; font-weight:bold; }
+        .audio-box {
+            width: 100%;
+            margin-top: 12px;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         .music-btn {
             width: 48px;
             height: 48px;
             border-radius: 50%;
             background: linear-gradient(135deg, #ffd600 40%, #f67280 100%);
+            box-shadow: 0 2px 8px #f6728088;
             border: none;
             outline: none;
             cursor: pointer;
@@ -96,102 +132,164 @@
             justify-content: center;
             font-size: 2em;
             color: #fff;
-            margin-bottom: 5px;
-            box-shadow: 0 2px 8px #f6728088;
             transition: background 0.2s, transform 0.2s;
+            margin: 0 auto 4px auto;
+            position: relative;
+            z-index: 6;
         }
         .music-btn:active {
-            transform: scale(0.92);
+            transform: scale(0.90);
             background: linear-gradient(135deg, #f67280 40%, #ffd600 100%);
+        }
+        .music-btn svg {
+            width: 28px;
+            height: 28px;
+            pointer-events: none;
         }
         .audio-tip {
             color: #f44336;
-            font-size: 0.96em;
+            font-size: 0.98em;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
             text-align: center;
-            margin-top: 2px;
         }
-        /* Мобильная адаптация */
-        @media (max-width: 600px) {
-            .container {
-                padding: 8px 2vw;
-                max-width: 99vw;
-                border-radius: 12px;
-            }
-            .images-row {
-                gap: 6px;
-            }
-            .img-card {
-                width: 38vw;
-                max-width: 90px;
-                height: 28vw;
-                max-height: 85px;
-            }
-            h1 {
-                font-size: 1.1em;
-            }
-            .wishes {
-                font-size: 0.96em;
-            }
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(50px);}
+            to {opacity: 1; transform: translateY(0);}
         }
-        @media (max-width: 400px) {
-            .container {
-                padding: 4px 1vw;
+        @keyframes float {
+            from {transform: translateY(0);}
+            to {transform: translateY(-18px);}
+        }
+        @keyframes glow {
+            from {text-shadow: 0 2px 8px #ffb2c1, 0 1px 0 #fff;}
+            to   {text-shadow: 0 4px 18px #f67280, 0 1px 0 #fff;}
+        }
+        @keyframes pop-in {
+            from {transform: scale(0.7); opacity:0;}
+            to {transform: scale(1); opacity:1;}
+        }
+        @keyframes twinkle {
+            from {opacity: 0.55;}
+            to {opacity: 1;}
+        }
+        @keyframes firework {
+            0%   { opacity: 0; transform: scale(0.4) translateY(60px);}
+            25%  { opacity: 1; transform: scale(1.2) translateY(-20px);}
+            50%  { opacity: 1; transform: scale(1.1) translateY(-40px);}
+            100% { opacity: 0; transform: scale(0.5) translateY(-80px);}
+        }
+        @media (max-width: 900px) {
+            .card {
+                flex-direction: column;
+                align-items: center;
+                max-width: 95vw;
+                gap: 18px;
             }
-            .img-card {
-                max-width: 75px;
-                max-height: 64px;
+            .right-image {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+            .card-content {
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="decor-top">
-            🎉 <span style="color:#f7d51d;">🎊</span> 🥳 🎈
+    <canvas class="confetti"></canvas>
+    <div class="card">
+        <div class="firework" style="left:20px;top:10px;">🎆</div>
+        <div class="firework" style="left:75%;top:20px;animation-delay:1.2s;">🎇</div>
+        <div class="firework" style="left:60%;top:70%;animation-delay:0.7s;">✨</div>
+        <div class="left-images">
+            <span class="star">⭐</span>
+            <img class="birthday-img" src="image1.jpg" alt="Забавное фото">
         </div>
-        <div class="images-row">
-            <img class="img-card" src="image1.jpg" alt="Фото 1">
-            <img class="img-card" src="image2.jpg" alt="Фото 2">
-        </div>
-        <div class="content">
+        <div class="card-content">
+            <div class="balloons">🎈<span style="color:#f7d51d;">🎊</span>🥳🎂</div>
             <h1>
-                <span style="color:#f44336;">С 18-летием, kentafarik Adrian!</span>
+                <span class="red">S 18 letiem</span> <span class="yellow">kentafarik Adrian!</span>
             </h1>
-            <div class="wishes">
-                <span style="color:#1976d2;">Дорогой Adrian Ivanov!</span><br>
-                <span style="color:#f44336;">Поздравляем тебя с 18-м днем рождения!</span><br>
-                <span style="color:#ffd600;">Желаем счастья, здоровья, денег и удачи,</span>
-                <span style="color:#43a047;">чтобы в кошельке свободного места не было, а жизнь была хорошей.</span><br>
-                <span style="color:#8e24aa;">Пусть проблем будет меньше, а радости больше!</span><br>
-                <span style="color:#1976d2;">От Твоей Столичной Братвы 🤘</span>
-            </div>
+            <p>
+                <span class="blue">Daragoj nash Adrian Ivanov</span>
+                <span class="red">Pozdravliajem tebia s 18 dniom rozhdenia!</span><br>
+                <span class="yellow">Zhelajem tebe schastia, zdorovia, deneg, udachi,</span>
+                <span class="green">shto by w koshelke svobodnogo mesta ne bylo, shto by zhyznia horosha byla</span><br>
+                <span class="purple">Shto by problem ne znal i goria ne vidal,</span>
+                <span class="blue">Ot Twajej Stalickoj Bratwy🤘</span><br>
+            </p>
             <div class="footer">
-                С любовью и искренними поздравлениями в этот великий день!
+                <span class="red">S liuboviu</span> i <span class="yellow">iskrennimi pozdrawleniami</span> w etot velikij den.
+            </div>
+            <div class="audio-box">
+                <!-- Мини-кнопка для музыки -->
+                <button id="musicBtn" class="music-btn" title="Включить/выключить музыку">
+                    <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40">
+                        <polygon points="10,7 33,20 10,33 10,7"/>
+                    </svg>
+                    <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40" style="display:none;">
+                        <rect x="10" y="7" width="8" height="26"/>
+                        <rect x="22" y="7" width="8" height="26"/>
+                    </svg>
+                </button>
+                <div class="audio-tip">Muzlo: <span style="color:#ffd600;">Tykaj knopku esli ogryzok muzlo zablokal</span></div>
+                <iframe id="ytplayer"
+                    style="width:0;height:0;border:0;position:absolute;left:-9999px;"
+                    src="https://www.youtube.com/embed/qdRGmu7J4GM?enablejsapi=1&version=3&loop=1&playlist=qdRGmu7J4GM"
+                    allow="autoplay"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
-        <div class="audio-box">
-            <button id="musicBtn" class="music-btn" title="Включить/выключить музыку">
-                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40">
-                    <polygon points="10,7 33,20 10,33 10,7"/>
-                </svg>
-                <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40" style="display:none;">
-                    <rect x="10" y="7" width="8" height="26"/>
-                    <rect x="22" y="7" width="8" height="26"/>
-                </svg>
-            </button>
-            <div class="audio-tip">
-                Музыка: <span style="color:#ffd600;">Нажми кнопку для включения</span>
-            </div>
-            <iframe id="ytplayer"
-                style="width:0;height:0;border:0;position:absolute;left:-9999px;"
-                src="https://www.youtube.com/embed/qdRGmu7J4GM?enablejsapi=1&version=3&loop=1&playlist=qdRGmu7J4GM"
-                allow="autoplay"
-                frameborder="0"
-                allowfullscreen>
-            </iframe>
-        </div>
+        <img class="right-image" src="image2.jpg" alt="Вдохновляющее фото">
     </div>
     <script>
+        // Конфетти-анимация
+        const confetti = document.querySelector('.confetti');
+        const ctx = confetti.getContext('2d');
+        let w = confetti.width = window.innerWidth;
+        let h = confetti.height = window.innerHeight;
+        let pieces = [];
+        for (let i = 0; i < 70; i++) {
+            pieces.push({
+                x: Math.random() * w,
+                y: Math.random() * h - h,
+                r: Math.random() * 7 + 4,
+                d: Math.random() * 40 + 10,
+                color: `hsl(${Math.random()*360},95%,60%)`,
+                tilt: Math.random() * 10 - 10
+            });
+        }
+        function drawConfetti() {
+            ctx.clearRect(0, 0, w, h);
+            for (let i = 0; i < pieces.length; i++) {
+                let p = pieces[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, false);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+            }
+            updateConfetti();
+        }
+        function updateConfetti() {
+            for (let i = 0; i < pieces.length; i++) {
+                let p = pieces[i];
+                p.y += Math.cos(p.d) + 1 + p.r/2;
+                p.x += Math.sin(0.3) * 2;
+                if (p.y > h) {
+                    p.x = Math.random() * w;
+                    p.y = -10;
+                }
+            }
+        }
+        setInterval(drawConfetti, 22);
+        window.addEventListener('resize',()=>{
+            w = confetti.width = window.innerWidth;
+            h = confetti.height = window.innerHeight;
+        });
+
         // YouTube API для управления музыкой
         let player;
         let ytReady = false, isPlaying = false;
@@ -209,6 +307,10 @@
                 events: {
                     'onReady': function(event) {
                         ytReady = true;
+                        // Попробовать автозапуск (может не сработать)
+                        try {
+                            event.target.playVideo();
+                        } catch(e){}
                     },
                     'onStateChange': function(event) {
                         if(event.data === YT.PlayerState.PLAYING) {
@@ -220,6 +322,7 @@
                             pauseIcon.style.display = 'none';
                             isPlaying = false;
                         }
+                        // Повтор
                         if(event.data === YT.PlayerState.ENDED) {
                             player.playVideo();
                         }
@@ -237,6 +340,13 @@
                 }
             }
         });
+
+        // Попробовать автозапуск после первого клика по странице
+        document.addEventListener('click', function() {
+            if(ytReady && player && !isPlaying) {
+                player.playVideo();
+            }
+        }, { once: true });
     </script>
 </body>
 </html>
