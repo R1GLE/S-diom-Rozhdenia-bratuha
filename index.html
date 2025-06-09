@@ -5,387 +5,88 @@
     <title>С Днем Рождения, Adrian!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    body {
-        min-height: 100vh;
-        min-width: 100vw;
-        margin: 0;
-        font-family: 'Segoe UI', 'Arial', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: url('image4.jpg') center center/cover no-repeat fixed;
-        position: relative;
-        overflow-x: hidden;
-    }
-    .confetti {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        pointer-events: none;
-        z-index: 3;
-    }
-    .card {
-        background: rgba(255,255,255,0.93);
-        border-radius: 20px;
-        padding: 24px 12px;
-        box-shadow: 0 4px 32px rgba(0,0,0,0.13);
-        max-width: 900px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 18px;
-        animation: fadeIn 2s;
-        position: relative;
-        z-index: 2;
-        background: url('image3.jpg') center center/cover no-repeat;
-        overflow: hidden;
-    }
-    .left-images {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-    .birthday-img, .right-image {
-        width: 120px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 14px;
-        box-shadow: 0 4px 18px rgba(246, 115, 128, 0.25);
-        animation: pop-in 1.2s cubic-bezier(.52,1.64,.37,.94);
-    }
-    .right-image {
-        margin-left: 0;
-        animation: pop-in 1.6s cubic-bezier(.52,1.64,.37,.94);
-    }
-    .card-content {
-        flex: 1;
-        text-align: left;
-        background: rgba(255,255,255,0.88);
-        border-radius: 12px;
-        padding: 8px 8px;
-        box-sizing: border-box;
-        position: relative;
-        z-index: 1;
-        min-width: 0;
-    }
-    h1 {
-        color: #f67280;
-        margin-bottom: 12px;
-        font-size: 1.6em;
-        letter-spacing: 1.2px;
-        text-shadow: 0 2px 8px #ffb2c1, 0 1px 0 #fff;
-        animation: glow 2s infinite alternate;
-    }
-    .balloons {
-        margin-bottom: 10px;
-        font-size: 2em;
-        animation: float 2s infinite alternate;
-        display: flex;
-        gap: 4px;
-    }
-    .star {
-        color: #f7d51d;
-        font-size: 1.2em;
-        animation: twinkle 1.3s infinite alternate;
-        margin-right: 2px;
-    }
-    .firework {
-        position: absolute;
-        font-size: 1.5em;
-        pointer-events: none;
-        animation: firework 2.5s linear infinite;
-    }
-    .yellow { color: #ffd600; font-weight:bold; }
-    .red { color: #f44336; font-weight:bold; }
-    .blue { color: #1976d2; font-weight:bold; }
-    .green { color: #43a047; font-weight:bold; }
-    .purple { color: #8e24aa; font-weight:bold; }
-    .audio-box {
-        width: 100%;
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    .music-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #ffd600 40%, #f67280 100%);
-        box-shadow: 0 2px 8px #f6728088;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6em;
-        color: #fff;
-        transition: background 0.2s, transform 0.2s;
-        margin: 0 auto 2px auto;
-        position: relative;
-        z-index: 6;
-    }
-    .music-btn:active {
-        transform: scale(0.90);
-        background: linear-gradient(135deg, #f67280 40%, #ffd600 100%);
-    }
-    .music-btn svg {
-        width: 22px;
-        height: 22px;
-        pointer-events: none;
-    }
-    .audio-tip {
-        color: #f44336;
-        font-size: 0.92em;
-        margin-top: 2px;
-        letter-spacing: 0.4px;
-        text-align: center;
-    }
-    @keyframes fadeIn {
-        from {opacity: 0; transform: translateY(50px);}
-        to {opacity: 1; transform: translateY(0);}
-    }
-    @keyframes float {
-        from {transform: translateY(0);}
-        to {transform: translateY(-10px);}
-    }
-    @keyframes glow {
-        from {text-shadow: 0 2px 8px #ffb2c1, 0 1px 0 #fff;}
-        to   {text-shadow: 0 4px 18px #f67280, 0 1px 0 #fff;}
-    }
-    @keyframes pop-in {
-        from {transform: scale(0.7); opacity:0;}
-        to {transform: scale(1); opacity:1;}
-    }
-    @keyframes twinkle {
-        from {opacity: 0.55;}
-        to {opacity: 1;}
-    }
-    @keyframes firework {
-        0%   { opacity: 0; transform: scale(0.4) translateY(60px);}
-        25%  { opacity: 1; transform: scale(1.2) translateY(-20px);}
-        50%  { opacity: 1; transform: scale(1.1) translateY(-40px);}
-        100% { opacity: 0; transform: scale(0.5) translateY(-80px);}
-    }
-
-    /* Мобильная адаптация */
-    @media (max-width: 700px) {
-        .card {
-            flex-direction: column;
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            min-height: 100vh;
+            width: 100vw;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: #f8f8f8;
+            overflow-x: hidden;
+        }
+        body {
+            background: url('image4.jpg') center center/cover no-repeat fixed;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            max-width: 98vw;
+            min-height: 100vh;
+        }
+        .confetti {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .card {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.93);
+            border-radius: 18px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+            max-width: 900px;
             width: 98vw;
-            padding: 12px 2vw;
-            gap: 10px;
+            padding: 32px 24px;
+            gap: 28px;
+            position: relative;
+            z-index: 2;
+            background: url('image3.jpg') center center/cover no-repeat;
+            overflow: hidden;
         }
         .left-images {
-            flex-direction: row;
-            gap: 10px;
-            margin-bottom: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
         }
         .birthday-img, .right-image {
-            width: 38vw;
-            max-width: 120px;
-            height: 22vw;
-            max-height: 150px;
+            width: 150px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(246, 115, 128, 0.23);
+        }
+        .right-image {
+            margin-left: 0;
         }
         .card-content {
-            text-align: center;
-            padding: 8px 2vw;
+            flex: 1;
+            background: rgba(255,255,255,0.85);
+            border-radius: 14px;
+            padding: 10px 18px;
+            position: relative;
+            z-index: 1;
+            min-width: 0;
         }
         h1 {
-            font-size: 1.18em;
+            color: #f67280;
+            margin-bottom: 14px;
+            font-size: 2em;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px #ffb2c1, 0 1px 0 #fff;
+            animation: glow 2s infinite alternate;
         }
         .balloons {
-            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            animation: float 2s infinite alternate;
+            display: flex;
+            gap: 7px;
         }
-        .footer {
-            font-size: 0.98em;
-        }
-        .firework {
-            font-size: 1.1em;
-        }
-    }
-    @media (max-width: 430px) {
-        .card {
-            padding: 8px 1vw;
-        }
-        .birthday-img, .right-image {
-            width: 55vw;
-            max-width: 100px;
-            height: 32vw;
-            max-height: 100px;
-        }
-        h1 {
-            font-size: 1em;
-        }
-        .card-content {
-            padding: 4px 1vw;
-        }
-    }
-</style>
-</head>
-<body>
-    <canvas class="confetti"></canvas>
-    <div class="card">
-        <div class="firework" style="left:20px;top:10px;">🎆</div>
-        <div class="firework" style="left:75%;top:20px;animation-delay:1.2s;">🎇</div>
-        <div class="firework" style="left:60%;top:70%;animation-delay:0.7s;">✨</div>
-        <div class="left-images">
-            <span class="star">⭐</span>
-            <img class="birthday-img" src="image1.jpg" alt="Забавное фото">
-        </div>
-        <div class="card-content">
-            <div class="balloons">🎈<span style="color:#f7d51d;">🎊</span>🥳🎂</div>
-            <h1>
-                <span class="red">S 18 letiem</span> <span class="yellow">kentafarik Adrian!</span>
-            </h1>
-            <p>
-                <span class="blue">Daragoj nash Adrian Ivanov</span>
-                <span class="red">Pozdravliajem tebia s 18 dniom rozhdenia!</span><br>
-                <span class="yellow">Zhelajem tebe schastia, zdorovia, deneg, udachi,</span>
-                <span class="green">shto by w koshelke svobodnogo mesta ne bylo, shto by zhyznia horosha byla</span><br>
-                <span class="purple">Shto by problem ne znal i goria ne vidal,</span>
-                <span class="blue">Ot Twajej Stalickoj Bratwy🤘</span><br>
-            </p>
-            <div class="footer">
-                <span class="red">S liuboviu</span> i <span class="yellow">iskrennimi pozdrawleniami</span> w etot velikij den.
-            </div>
-            <div class="audio-box">
-                <!-- Мини-кнопка для музыки -->
-                <button id="musicBtn" class="music-btn" title="Включить/выключить музыку">
-                    <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40">
-                        <polygon points="10,7 33,20 10,33 10,7"/>
-                    </svg>
-                    <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40" style="display:none;">
-                        <rect x="10" y="7" width="8" height="26"/>
-                        <rect x="22" y="7" width="8" height="26"/>
-                    </svg>
-                </button>
-                <div class="audio-tip">Muzlo: <span style="color:#ffd600;">Tykaj knopku esli ogryzok muzlo zablokal</span></div>
-                <iframe id="ytplayer"
-                    style="width:0;height:0;border:0;position:absolute;left:-9999px;"
-                    src="https://www.youtube.com/embed/qdRGmu7J4GM?enablejsapi=1&version=3&loop=1&playlist=qdRGmu7J4GM"
-                    allow="autoplay"
-                    frameborder="0"
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-        <img class="right-image" src="image2.jpg" alt="Вдохновляющее фото">
-    </div>
-    <script>
-        // Конфетти-анимация
-        const confetti = document.querySelector('.confetti');
-        const ctx = confetti.getContext('2d');
-        let w = confetti.width = window.innerWidth;
-        let h = confetti.height = window.innerHeight;
-        let pieces = [];
-        for (let i = 0; i < 70; i++) {
-            pieces.push({
-                x: Math.random() * w,
-                y: Math.random() * h - h,
-                r: Math.random() * 7 + 4,
-                d: Math.random() * 40 + 10,
-                color: `hsl(${Math.random()*360},95%,60%)`,
-                tilt: Math.random() * 10 - 10
-            });
-        }
-        function drawConfetti() {
-            ctx.clearRect(0, 0, w, h);
-            for (let i = 0; i < pieces.length; i++) {
-                let p = pieces[i];
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, false);
-                ctx.fillStyle = p.color;
-                ctx.fill();
-            }
-            updateConfetti();
-        }
-        function updateConfetti() {
-            for (let i = 0; i < pieces.length; i++) {
-                let p = pieces[i];
-                p.y += Math.cos(p.d) + 1 + p.r/2;
-                p.x += Math.sin(0.3) * 2;
-                if (p.y > h) {
-                    p.x = Math.random() * w;
-                    p.y = -10;
-                }
-            }
-        }
-        setInterval(drawConfetti, 22);
-        window.addEventListener('resize',()=>{
-            w = confetti.width = window.innerWidth;
-            h = confetti.height = window.innerHeight;
-        });
-
-        // YouTube API для управления музыкой
-        let player;
-        let ytReady = false, isPlaying = false;
-        const musicBtn = document.getElementById('musicBtn');
-        const playIcon = document.getElementById('playIcon');
-        const pauseIcon = document.getElementById('pauseIcon');
-
-        // Подключаем YouTube API
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.body.appendChild(tag);
-
-        window.onYouTubeIframeAPIReady = function() {
-            player = new YT.Player('ytplayer', {
-                events: {
-                    'onReady': function(event) {
-                        ytReady = true;
-                        // Попробовать автозапуск (может не сработать)
-                        try {
-                            event.target.playVideo();
-                        } catch(e){}
-                    },
-                    'onStateChange': function(event) {
-                        if(event.data === YT.PlayerState.PLAYING) {
-                            playIcon.style.display = 'none';
-                            pauseIcon.style.display = '';
-                            isPlaying = true;
-                        } else {
-                            playIcon.style.display = '';
-                            pauseIcon.style.display = 'none';
-                            isPlaying = false;
-                        }
-                        // Повтор
-                        if(event.data === YT.PlayerState.ENDED) {
-                            player.playVideo();
-                        }
-                    }
-                }
-            });
-        };
-
-        musicBtn.addEventListener('click', function() {
-            if(ytReady && player) {
-                if(isPlaying) {
-                    player.pauseVideo();
-                } else {
-                    player.playVideo();
-                }
-            }
-        });
-
-        // Попробовать автозапуск после первого клика по странице
-        document.addEventListener('click', function() {
-            if(ytReady && player && !isPlaying) {
-                player.playVideo();
-            }
-        }, { once: true });
-    </script>
-</body>
-</html>
+        .star {
+            color: #f7d51d;
+            font-size: 1.5em;
+            animation: twinkle 1.3s infinite
