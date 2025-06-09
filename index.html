@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>С Днем Рождения, Adrian!</title>
+    <title>S 18 letiem, kentafarik Adrian!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         html, body {
@@ -20,6 +20,15 @@
             align-items: center;
             background: url('image4.jpg') center center/cover no-repeat fixed;
             box-sizing: border-box;
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 3;
         }
         .card {
             background: rgba(255,255,255,0.96);
@@ -40,6 +49,56 @@
             background-position: center;
             overflow: hidden;
         }
+        .firework {
+            position: absolute;
+            font-size: 1.6em;
+            pointer-events: none;
+            animation: firework 2.5s linear infinite;
+        }
+        .firework:nth-child(1) { left: 20px; top: 10px; }
+        .firework:nth-child(2) { left: 75%; top: 20px; animation-delay: 1.2s; }
+        .firework:nth-child(3) { left: 60%; top: 70%; animation-delay: 0.7s; }
+        .left-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .star {
+            color: #f7d51d;
+            font-size: 1.2em;
+            animation: twinkle 1.3s infinite alternate;
+            margin-bottom: 2px;
+        }
+        .birthday-img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px #f6728088;
+            animation: pop-in 1.2s cubic-bezier(.52,1.64,.37,.94);
+        }
+        .right-image {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px #f6728088;
+            margin-top: 8px;
+            animation: pop-in 1.6s cubic-bezier(.52,1.64,.37,.94);
+        }
+        .card-content {
+            flex: 1;
+            text-align: center;
+            background: rgba(255,255,255,0.88);
+            border-radius: 12px;
+            padding: 8px 6px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+            min-width: 0;
+            margin-top: 8px;
+        }
         .balloons {
             margin-bottom: 6px;
             font-size: 1.8em;
@@ -47,22 +106,6 @@
             display: flex;
             gap: 6px;
             justify-content: center;
-        }
-        .images-row {
-            display: flex;
-            gap: 8px;
-            width: 100%;
-            justify-content: center;
-            margin-bottom: 8px;
-        }
-        .img-card {
-            width: 38vw;
-            max-width: 100px;
-            height: 25vw;
-            max-height: 90px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px #f6728077;
         }
         h1 {
             color: #f67280;
@@ -72,6 +115,11 @@
             text-shadow: 0 1px 6px #ffd6e3, 0 1px 0 #fff;
             animation: glow 2s infinite alternate;
         }
+        .red { color: #f44336; font-weight:bold; }
+        .yellow { color: #ffd600; font-weight:bold; }
+        .blue { color: #1976d2; font-weight:bold; }
+        .green { color: #43a047; font-weight:bold; }
+        .purple { color: #8e24aa; font-weight:bold; }
         .wishes {
             color: #444;
             font-size: 1em;
@@ -130,21 +178,29 @@
             from {text-shadow: 0 1px 6px #ffd6e3, 0 1px 0 #fff;}
             to   {text-shadow: 0 3px 12px #f67280, 0 1px 0 #fff;}
         }
-        /* Мобильная адаптация */
+        @keyframes pop-in {
+            from {transform: scale(0.7); opacity:0;}
+            to {transform: scale(1); opacity:1;}
+        }
+        @keyframes twinkle {
+            from {opacity: 0.55;}
+            to {opacity: 1;}
+        }
+        @keyframes firework {
+            0%   { opacity: 0; transform: scale(0.4) translateY(60px);}
+            25%  { opacity: 1; transform: scale(1.2) translateY(-20px);}
+            50%  { opacity: 1; transform: scale(1.1) translateY(-40px);}
+            100% { opacity: 0; transform: scale(0.5) translateY(-80px);}
+        }
         @media (max-width: 600px) {
             .card {
                 padding: 7px 1vw;
                 max-width: 99vw;
                 border-radius: 12px;
             }
-            .images-row {
-                gap: 5px;
-            }
-            .img-card {
-                width: 36vw;
-                max-width: 68px;
-                height: 22vw;
-                max-height: 60px;
+            .birthday-img, .right-image {
+                width: 60px;
+                height: 60px;
             }
             h1 {
                 font-size: 1em;
@@ -153,60 +209,101 @@
                 font-size: 0.93em;
             }
         }
-        @media (max-width: 400px) {
-            .card {
-                padding: 2px 0.5vw;
-            }
-            .img-card {
-                max-width: 50px;
-                max-height: 33px;
-            }
-        }
     </style>
 </head>
 <body>
+    <canvas class="confetti"></canvas>
     <div class="card">
-        <div class="balloons">🎉 🎊 🥳 🎈</div>
-        <div class="images-row">
-            <img class="img-card" src="image1.jpg" alt="Фото 1">
-            <img class="img-card" src="image2.jpg" alt="Фото 2">
+        <div class="firework" style="left:20px;top:10px;">🎆</div>
+        <div class="firework" style="left:75%;top:20px;animation-delay:1.2s;">🎇</div>
+        <div class="firework" style="left:60%;top:70%;animation-delay:0.7s;">✨</div>
+        <div class="left-images">
+            <span class="star">⭐</span>
+            <img class="birthday-img" src="image1.jpg" alt="Zabavnoe foto">
         </div>
-        <h1>
-            <span style="color:#f44336;">S 18 letiem</span> <span style="color:#ffd600;">kentafarik Adrian!</span>
-        </h1>
-        <div class="wishes">
-            <span style="color:#1976d2;">Adrian Ivanov!</span><br>
-            <span style="color:#f44336;">s 18-m dnem rozhdenia!</span><br>
-            <span style="color:#ffd600;">Zhelaem schastia, zdorovia, deneg i udachi, chtoby v mesta v koshielke ne bylo, a zhizn byla khoroshei.</span><br>
-            <span style="color:#43a047;">Probleem men'she, a radosti bol'she!</span><br>
-            <span style="color:#8e24aa;">Ot lichnoi Bratvy 🤘</span>
-        </div>
-        <div class="footer">
-            s pozdravleniiami v etot velikii den!
-        </div>
-        <div class="audio-box">
-            <button id="musicBtn" class="music-btn" title="Включить/выключить музыку">
-                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40">
-                    <polygon points="10,7 33,20 10,33 10,7"/>
-                </svg>
-                <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40" style="display:none;">
-                    <rect x="10" y="7" width="8" height="26"/>
-                    <rect x="22" y="7" width="8" height="26"/>
-                </svg>
-            </button>
-            <div class="audio-tip">
-                Muzlo: <span style="color:#ffd600;">Tykaj knopku dlya vkliucheniya</span>
+        <div class="card-content">
+            <div class="balloons">🎈<span style="color:#f7d51d;">🎊</span>🥳🎂</div>
+            <h1>
+                <span class="red">S 18 letiem</span> <span class="yellow">kentafarik Adrian!</span>
+            </h1>
+            <p class="wishes">
+                <span class="blue">Daragoj nash Adrian Ivanov</span><br>
+                <span class="red">Pozdravliajem tebia s 18 dniom rozhdenia!</span><br>
+                <span class="yellow">Zhelajem tebe schastia, zdorovia, deneg, udachi,</span>
+                <span class="green">shto by w koshelke svobodnogo mesta ne bylo, shto by zhyznia horosha byla</span><br>
+                <span class="purple">Shto by problem ne znal i goria ne vidal,</span>
+                <span class="blue">Ot Twajej Stalickoj Bratwy🤘</span><br>
+            </p>
+            <div class="footer">
+                <span class="red">S liuboviu</span> i <span class="yellow">iskrennimi pozdrawleniami</span> w etot velikij den.
             </div>
-            <iframe id="ytplayer"
-                style="width:0;height:0;border:0;position:absolute;left:-9999px;"
-                src="https://www.youtube.com/embed/qdRGmu7J4GM?enablejsapi=1&version=3&loop=1&playlist=qdRGmu7J4GM"
-                allow="autoplay"
-                frameborder="0"
-                allowfullscreen>
-            </iframe>
+            <div class="audio-box">
+                <button id="musicBtn" class="music-btn" title="Включить/выключить музыку">
+                    <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40">
+                        <polygon points="10,7 33,20 10,33 10,7"/>
+                    </svg>
+                    <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 40 40" style="display:none;">
+                        <rect x="10" y="7" width="8" height="26"/>
+                        <rect x="22" y="7" width="8" height="26"/>
+                    </svg>
+                </button>
+                <div class="audio-tip">Muzlo: <span style="color:#ffd600;">Tykaj knopku esli ogryzok muzlo zablokal</span></div>
+                <iframe id="ytplayer"
+                    style="width:0;height:0;border:0;position:absolute;left:-9999px;"
+                    src="https://www.youtube.com/embed/qdRGmu7J4GM?enablejsapi=1&version=3&loop=1&playlist=qdRGmu7J4GM"
+                    allow="autoplay"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
+        <img class="right-image" src="image2.jpg" alt="Vdokhnovlyayushchee foto">
     </div>
     <script>
+        // Конфетти-анимация
+        const confetti = document.querySelector('.confetti');
+        const ctx = confetti.getContext('2d');
+        let w = confetti.width = window.innerWidth;
+        let h = confetti.height = window.innerHeight;
+        let pieces = [];
+        for (let i = 0; i < 70; i++) {
+            pieces.push({
+                x: Math.random() * w,
+                y: Math.random() * h - h,
+                r: Math.random() * 7 + 4,
+                d: Math.random() * 40 + 10,
+                color: `hsl(${Math.random()*360},95%,60%)`,
+                tilt: Math.random() * 10 - 10
+            });
+        }
+        function drawConfetti() {
+            ctx.clearRect(0, 0, w, h);
+            for (let i = 0; i < pieces.length; i++) {
+                let p = pieces[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, false);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+            }
+            updateConfetti();
+        }
+        function updateConfetti() {
+            for (let i = 0; i < pieces.length; i++) {
+                let p = pieces[i];
+                p.y += Math.cos(p.d) + 1 + p.r/2;
+                p.x += Math.sin(0.3) * 2;
+                if (p.y > h) {
+                    p.x = Math.random() * w;
+                    p.y = -10;
+                }
+            }
+        }
+        setInterval(drawConfetti, 22);
+        window.addEventListener('resize',()=>{
+            w = confetti.width = window.innerWidth;
+            h = confetti.height = window.innerHeight;
+        });
+
         // YouTube API для управления музыкой
         let player;
         let ytReady = false, isPlaying = false;
